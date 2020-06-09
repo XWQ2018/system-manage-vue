@@ -38,7 +38,8 @@
                         <i class="el-icon-caret-bottom"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
-                        <a href="javascript:viod()" target="_blank">
+                        <!-- <a href="javascript:void" target="_blank"> -->
+                        <a href="https://github.com/XWQ2018/system-manage-vue" target="_blank">
                             <el-dropdown-item>项目仓库</el-dropdown-item>
                         </a>
                         <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>

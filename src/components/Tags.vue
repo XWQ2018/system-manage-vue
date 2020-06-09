@@ -42,6 +42,7 @@ export default {
         },
         // 关闭单个标签
         closeTags(index) {
+            if (this.tagsList.length === 1) return;
             const delItem = this.tagsList.splice(index, 1)[0];
             const item = this.tagsList[index]
                 ? this.tagsList[index]
@@ -55,6 +56,7 @@ export default {
         },
         // 关闭全部标签
         closeAll() {
+            if (this.tagsList.length === 1) return;
             this.tagsList = [];
             this.$router.push("/");
         },

@@ -164,12 +164,21 @@ export default {
         }
     },
     created() {
+        if (
+            this.menuItems &&
+            Array.isArray(this.menuItems) &&
+            this.menuItems.length > 0
+        ) {
+            this.items = this.menuItems;
+        }
         // 通过 Event Bus 进行组件间通信，来折叠侧边栏
         bus.$on("collapse", msg => {
             this.collapse = msg;
             bus.$emit("collapse-content", msg);
         });
-    }
+    },
+    mounted() {},
+    methods: {}
 };
 </script>
 

@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <v-head></v-head>
-        <v-sidebar></v-sidebar>
+        <v-sidebar :menuItems="menuItems"></v-sidebar>
         <div class="content-box" :class="{'content-collapse':collapse}">
             <v-tags></v-tags>
             <div class="content">
@@ -25,7 +25,24 @@ export default {
     data() {
         return {
             tagsList: [],
-            collapse: false
+            collapse: false,
+            menuItems: [
+                {
+                    icon: "el-icon-lx-home",
+                    index: "dashboard",
+                    title: "系统首页"
+                },
+                {
+                    icon: "el-icon-lx-cascades",
+                    index: "table",
+                    title: "基础表格"
+                },
+                {
+                    icon: "el-icon-lx-copy",
+                    index: "tabs",
+                    title: "tab选项卡"
+                }
+            ]
         };
     },
     components: {
