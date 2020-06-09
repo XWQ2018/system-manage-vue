@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
-    <router-view />
-  </div>
+    <div id="app">
+        <router-view />
+    </div>
 </template>
 
 <style lang="less">
@@ -9,11 +9,11 @@
 @import "./assets/css/color-dark.css"; /*深色主题*/
 /*@import "./assets/css/theme-green/color-green.css";   浅绿色主题*/
 #app {
-  //   font-family: Avenir, Helvetica, Arial, sans-serif;
-  //   -webkit-font-smoothing: antialiased;
-  //   -moz-osx-font-smoothing: grayscale;
-  //   text-align: center;
-  //   color: #2c3e50;
-  font-size: 16px;
+    //   font-family: Avenir, Helvetica, Arial, sans-serif;
+    //   -webkit-font-smoothing: antialiased;
+    //   -moz-osx-font-smoothing: grayscale;
+    //   text-align: center;
+    //   color: #2c3e50;
+    font-size: 16px;
 }
 </style>

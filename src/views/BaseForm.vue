@@ -75,55 +75,55 @@
 
 <script>
 export default {
-    name: 'baseform',
+    name: "baseform",
     data() {
         return {
             options: [
                 {
-                    value: 'guangdong',
-                    label: '广东省',
+                    value: "guangdong",
+                    label: "广东省",
                     children: [
                         {
-                            value: 'guangzhou',
-                            label: '广州市',
+                            value: "guangzhou",
+                            label: "广州市",
                             children: [
                                 {
-                                    value: 'tianhe',
-                                    label: '天河区'
+                                    value: "tianhe",
+                                    label: "天河区"
                                 },
                                 {
-                                    value: 'haizhu',
-                                    label: '海珠区'
+                                    value: "haizhu",
+                                    label: "海珠区"
                                 }
                             ]
                         },
                         {
-                            value: 'dongguan',
-                            label: '东莞市',
+                            value: "dongguan",
+                            label: "东莞市",
                             children: [
                                 {
-                                    value: 'changan',
-                                    label: '长安镇'
+                                    value: "changan",
+                                    label: "长安镇"
                                 },
                                 {
-                                    value: 'humen',
-                                    label: '虎门镇'
+                                    value: "humen",
+                                    label: "虎门镇"
                                 }
                             ]
                         }
                     ]
                 },
                 {
-                    value: 'hunan',
-                    label: '湖南省',
+                    value: "hunan",
+                    label: "湖南省",
                     children: [
                         {
-                            value: 'changsha',
-                            label: '长沙市',
+                            value: "changsha",
+                            label: "长沙市",
                             children: [
                                 {
-                                    value: 'yuelu',
-                                    label: '岳麓区'
+                                    value: "yuelu",
+                                    label: "岳麓区"
                                 }
                             ]
                         }
@@ -131,21 +131,21 @@ export default {
                 }
             ],
             form: {
-                name: '',
-                region: '',
-                date1: '',
-                date2: '',
+                name: "",
+                region: "",
+                date1: "",
+                date2: "",
                 delivery: true,
-                type: ['步步高'],
-                resource: '小天才',
-                desc: '',
+                type: ["步步高"],
+                resource: "小天才",
+                desc: "",
                 options: []
             }
         };
     },
     methods: {
         onSubmit() {
-            this.$message.success('提交成功！');
+            this.$message.success("提交成功！");
         }
     }
 };

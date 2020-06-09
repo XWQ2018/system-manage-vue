@@ -1,8 +1,10 @@
 <template>
-    <div class="">
+    <div class>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-lx-copy"></i> tab选项卡</el-breadcrumb-item>
+                <el-breadcrumb-item>
+                    <i class="el-icon-lx-copy"></i> tab选项卡
+                </el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
@@ -71,58 +73,64 @@
 </template>
 
 <script>
-    export default {
-        name: 'tabs',
-        data() {
-            return {
-                message: 'first',
-                showHeader: false,
-                unread: [{
-                    date: '2018-04-19 20:00:00',
-                    title: '【系统通知】该系统将于今晚凌晨2点到5点进行升级维护',
-                },{
-                    date: '2018-04-19 21:00:00',
-                    title: '今晚12点整发大红包，先到先得',
-                }],
-                read: [{
-                    date: '2018-04-19 20:00:00',
-                    title: '【系统通知】该系统将于今晚凌晨2点到5点进行升级维护'
-                }],
-                recycle: [{
-                    date: '2018-04-19 20:00:00',
-                    title: '【系统通知】该系统将于今晚凌晨2点到5点进行升级维护'
-                }]
-            }
+export default {
+    name: "tabs",
+    data() {
+        return {
+            message: "first",
+            showHeader: false,
+            unread: [
+                {
+                    date: "2018-04-19 20:00:00",
+                    title: "【系统通知】该系统将于今晚凌晨2点到5点进行升级维护"
+                },
+                {
+                    date: "2018-04-19 21:00:00",
+                    title: "今晚12点整发大红包，先到先得"
+                }
+            ],
+            read: [
+                {
+                    date: "2018-04-19 20:00:00",
+                    title: "【系统通知】该系统将于今晚凌晨2点到5点进行升级维护"
+                }
+            ],
+            recycle: [
+                {
+                    date: "2018-04-19 20:00:00",
+                    title: "【系统通知】该系统将于今晚凌晨2点到5点进行升级维护"
+                }
+            ]
+        };
+    },
+    methods: {
+        handleRead(index) {
+            const item = this.unread.splice(index, 1);
+            console.log(item);
+            this.read = item.concat(this.read);
         },
-        methods: {
-            handleRead(index) {
-                const item = this.unread.splice(index, 1);
-                console.log(item);
-                this.read = item.concat(this.read);
-            },
-            handleDel(index) {
-                const item = this.read.splice(index, 1);
-                this.recycle = item.concat(this.recycle);
-            },
-            handleRestore(index) {
-                const item = this.recycle.splice(index, 1);
-                this.read = item.concat(this.read);
-            }
+        handleDel(index) {
+            const item = this.read.splice(index, 1);
+            this.recycle = item.concat(this.recycle);
         },
-        computed: {
-            unreadNum(){
-                return this.unread.length;
-            }
+        handleRestore(index) {
+            const item = this.recycle.splice(index, 1);
+            this.read = item.concat(this.read);
+        }
+    },
+    computed: {
+        unreadNum() {
+            return this.unread.length;
         }
     }
-
+};
 </script>
 
 <style>
-.message-title{
+.message-title {
     cursor: pointer;
 }
-.handle-row{
+.handle-row {
     margin-top: 30px;
 }
 </style>

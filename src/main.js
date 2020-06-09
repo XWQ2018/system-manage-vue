@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
 import ElementUI from 'element-ui';
 import VueI18n from 'vue-i18n';
 import { messages } from './utils/i18n';
@@ -22,7 +22,7 @@ const i18n = new VueI18n({
 });
 
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
@@ -50,4 +50,4 @@ new Vue({
     router,
     store,
     render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');
