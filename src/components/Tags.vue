@@ -42,7 +42,11 @@ export default {
         },
         // 关闭单个标签
         closeTags(index) {
-            if (this.tagsList.length === 1) return;
+            if (this.tagsList.length === 1&&this.tagsList[index]['path']=='/dashboard') {
+                console.log(this.tagsList[index])
+                this.$message.success(`已经是首页`);
+                return
+            };
             const delItem = this.tagsList.splice(index, 1)[0];
             const item = this.tagsList[index]
                 ? this.tagsList[index]
@@ -56,7 +60,10 @@ export default {
         },
         // 关闭全部标签
         closeAll() {
-            if (this.tagsList.length === 1) return;
+            if (this.tagsList.length === 1&&this.tagsList[0]['path']=='/dashboard') {
+                this.$message.success(`已经是首页`);
+                return
+            };
             this.tagsList = [];
             this.$router.push("/");
         },
