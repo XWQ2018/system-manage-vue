@@ -2,7 +2,7 @@
     <div class="wrapper">
         <v-head></v-head>
         <v-sidebar :menuItems="menuItems"></v-sidebar>
-        <div class="content-box" :class="{'content-collapse':collapse}">
+        <div class="content-box" :class="{ 'content-collapse': collapse }">
             <v-tags></v-tags>
             <div class="content">
                 <transition name="move" mode="out-in">
@@ -30,39 +30,39 @@ export default {
                 {
                     icon: "el-icon-lx-home",
                     index: "dashboard",
-                    title: "系统首页"
+                    title: "系统首页",
                 },
                 {
                     icon: "el-icon-lx-cascades",
                     index: "table",
-                    title: "基础表格"
+                    title: "基础表格",
                 },
                 {
                     icon: "el-icon-lx-copy",
                     index: "tabs",
-                    title: "tab选项卡"
-                }
-            ]
+                    title: "系统消息",
+                },
+            ],
         };
     },
     components: {
         vHead,
         vSidebar,
-        vTags
+        vTags,
     },
     created() {
-        bus.$on("collapse-content", msg => {
+        bus.$on("collapse-content", (msg) => {
             this.collapse = msg;
         });
 
         // 只有在标签页列表里的页面才使用keep-alive，即关闭标签之后就不保存到内存中了。
-        bus.$on("tags", msg => {
+        bus.$on("tags", (msg) => {
             let arr = [];
             for (let i = 0, len = msg.length; i < len; i++) {
                 msg[i].name && arr.push(msg[i].name);
             }
             this.tagsList = arr;
         });
-    }
+    },
 };
 </script>

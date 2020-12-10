@@ -30,7 +30,7 @@ export default new VueRouter({
                 {
                     path: '/tabs',
                     component: () => import(/* webpackChunkName: "tabs" */ '../views/Tabs.vue'),
-                    meta: { title: 'tab选项卡' }
+                    meta: { title: '系统消息' }
                 },
                 {
                     path: '/form',
