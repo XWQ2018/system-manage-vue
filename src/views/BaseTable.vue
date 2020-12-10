@@ -2,19 +2,14 @@
     <div>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item>
-                    <i class="el-icon-lx-cascades"></i> 基础表格
-                </el-breadcrumb-item>
+                <el-breadcrumb-item> <i class="el-icon-lx-cascades"></i> 基础表格 </el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
             <div class="handle-box">
-                <el-button
-                    type="primary"
-                    icon="el-icon-delete"
-                    class="handle-del mr10"
-                    @click="delAllSelection"
-                >批量删除</el-button>
+                <el-button type="primary" icon="el-icon-delete" class="handle-del mr10" @click="delAllSelection"
+                    >批量删除</el-button
+                >
                 <el-select v-model="query.address" placeholder="地址" class="handle-select mr10">
                     <el-option key="1" label="广东省" value="广东省"></el-option>
                     <el-option key="2" label="湖南省" value="湖南省"></el-option>
@@ -34,7 +29,7 @@
                 <el-table-column prop="id" label="ID" width="55" align="center"></el-table-column>
                 <el-table-column prop="name" label="用户名"></el-table-column>
                 <el-table-column label="账户余额">
-                    <template slot-scope="scope">￥{{scope.row.money}}</template>
+                    <template slot-scope="scope">￥{{ scope.row.money }}</template>
                 </el-table-column>
                 <el-table-column label="头像(查看大图)" align="center">
                     <template slot-scope="scope">
@@ -49,25 +44,25 @@
                 <el-table-column label="状态" align="center">
                     <template slot-scope="scope">
                         <el-tag
-                            :type="scope.row.state==='成功'?'success':(scope.row.state==='失败'?'danger':'')"
-                        >{{scope.row.state}}</el-tag>
+                            :type="scope.row.state === '成功' ? 'success' : scope.row.state === '失败' ? 'danger' : ''"
+                            >{{ scope.row.state }}</el-tag
+                        >
                     </template>
                 </el-table-column>
 
                 <el-table-column prop="date" label="注册时间"></el-table-column>
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
-                        <el-button
-                            type="text"
-                            icon="el-icon-edit"
-                            @click="handleEdit(scope.$index, scope.row)"
-                        >编辑</el-button>
+                        <el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)"
+                            >编辑</el-button
+                        >
                         <el-button
                             type="text"
                             icon="el-icon-delete"
                             class="red"
                             @click="handleDelete(scope.$index, scope.row)"
-                        >删除</el-button>
+                            >删除</el-button
+                        >
                     </template>
                 </el-table-column>
             </el-table>
@@ -102,7 +97,6 @@
 </template>
 
 <script>
-import tableApi from "@/api/table";
 export default {
     name: "basetable",
     data() {
@@ -111,7 +105,7 @@ export default {
                 address: "",
                 name: "",
                 pageIndex: 1,
-                pageSize: 10
+                pageSize: 10,
             },
             tableData: [],
             multipleSelection: [],
@@ -120,7 +114,7 @@ export default {
             pageTotal: 0,
             form: {},
             idx: -1,
-            id: -1
+            id: -1,
         };
     },
     created() {
@@ -128,13 +122,13 @@ export default {
     },
     methods: {
         // 获取 easy-mock 的模拟数据
-        getData() {
-            tableApi.getMokeInfo(this.query).then(res => {
-                console.log(res);
-                this.tableData = res.list;
-                this.pageTotal = res.pageTotal || 50;
-            });
-        },
+        // getData() {
+        //     tableApi.getMokeInfo(this.query).then(res => {
+        //         console.log(res);
+        //         this.tableData = res.list;
+        //         this.pageTotal = res.pageTotal || 50;
+        //     });
+        // },
         // 触发搜索按钮
         handleSearch() {
             this.$set(this.query, "pageIndex", 1);
@@ -144,7 +138,7 @@ export default {
         handleDelete(index, row) {
             // 二次确认删除
             this.$confirm("确定要删除吗？", "提示", {
-                type: "warning"
+                type: "warning",
             })
                 .then(() => {
                     this.$message.success("删除成功");
@@ -182,8 +176,8 @@ export default {
         handlePageChange(val) {
             this.$set(this.query, "pageIndex", val);
             this.getData();
-        }
-    }
+        },
+    },
 };
 </script>
 

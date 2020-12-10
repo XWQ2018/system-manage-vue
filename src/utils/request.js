@@ -1,56 +1,91 @@
-/*
- * @Description: 捕车_java接口统一请求处理
- * @Author: xwq
- * @Date: 2019-06-19 09:58:35
- */
 import axios from 'axios';
 import Qs from 'qs';
+import { Message } from 'element-ui';
+import {
+    remove,
+    get
+} from '@/utils/storage';
 
-// create an axios instance
 const service = axios.create({
-    baseURL: process.env.VUE_APP_API_BCJAVA_URL, // api 的 base_url
-    timeout: 5000, // request timeout
+    baseURL: process.env.VUE_APP_API_URL,
+    timeout: 10000,
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
     },
-    // 拦截处理请求数据
     transformRequest: [function (data) {
         data = Qs.stringify(data);
         return data;
     }],
 });
 
-// request interceptor
+const responseCode = {
+    40500(msg) {
+        Message.error({
+            message: msg,
+            duration: 1000
+        })
+    },
+    40300(msg) {
+        Message.error({
+            message: msg,
+            duration: 1000
+        })
+    },
+    40600(msg) {
+        Message.error({
+            message: msg,
+            duration: 1000
+        })
+    },
+    40100(msg) {
+        Message.error({
+            message: msg,
+            duration: 1000
+        })
+        setTimeout(() => {
+            remove('token');
+
+        }, 1000);
+    },
+    40400(msg) {
+        Message.error({
+            message: msg,
+            duration: 1000
+        })
+    },
+    40000() {
+        return true;
+    },
+    50000() {
+        Message.error({
+            message: '系统繁忙，请稍后再试',
+            duration: 1000
+        })
+        return true;
+    }
+};
+
 service.interceptors.request.use(
     config => {
-        // Do something before request is sent
-        // if (store.getters.token) {
-        //   // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
-        //   config.headers['X-Token'] = getToken()
-        // 统一请求都有token
         if (config.data === undefined) {
             config.data = {};
         }
+        config.data.token = get('token');
         return config;
     },
     error => {
-        // Do something with request error
-        // console.log(error) // for debug
         return Promise.reject(error).catch(reason => {
             return reason;
         });
     }
 );
-
-// response interceptor
 service.interceptors.response.use(
-    //   response => response,
-    /**
-     * 请求code不为0即为请求失败，直接弹出接口返回error信息即可。
-     */
     response => {
         const res = response.data;
-        if (res.retCode !== '0') {
+        if (res.code !== 20000) {
+            if (responseCode[res.code]) {
+                responseCode[res.code](res.msg);
+            }
             return Promise.reject(res).catch(reason => {
                 return reason;
             });
@@ -59,7 +94,10 @@ service.interceptors.response.use(
         }
     },
     error => {
-        // console.log('err' + error) // for debug
+        Message.error({
+            message: error.message,
+            duration: 1000
+        })
         return Promise.reject(error).catch(reason => {
             return reason;
         });
