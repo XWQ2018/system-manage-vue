@@ -70,7 +70,9 @@ service.interceptors.request.use(
         if (config.data === undefined) {
             config.data = {};
         }
-        config.data.token = get('token');
+        if (get('userInfo')) {
+            config.data.token = get('userInfo').token;
+        }
         return config;
     },
     error => {

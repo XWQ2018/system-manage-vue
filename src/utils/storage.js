@@ -6,7 +6,13 @@
 
 export function get(key) {
     if (!key || typeof key != 'string') return;
-    return localStorage.getItem(key);
+    let ExTest = /^[\{||\[/]/;
+    if (ExTest.test(localStorage.getItem(key))) {
+        return JSON.parse(localStorage.getItem(key));
+    } else {
+        return localStorage.getItem(key);
+    }
+
 }
 
 export function set(key, data) {

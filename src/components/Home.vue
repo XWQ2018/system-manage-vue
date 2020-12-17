@@ -33,7 +33,7 @@ export default {
                     title: "系统首页",
                 },
                 {
-                    icon: "el-icon-lx-cascades",
+                    icon: "el-icon-lx-presentfill",
                     index: "table",
                     title: "基础表格",
                 },

@@ -5,12 +5,12 @@
             <i v-if="!collapse" class="el-icon-s-fold"></i>
             <i v-else class="el-icon-s-unfold"></i>
         </div>
-        <div class="logo">YYSHOP后台管理系统</div>
+        <div class="logo">后台管理系统</div>
         <div class="header-right">
             <div class="header-user-con">
                 <!-- 全屏显示 -->
                 <div class="btn-fullscreen" @click="handleFullScreen">
-                    <el-tooltip effect="dark" :content="fullscreen?`取消全屏`:`全屏`" placement="bottom">
+                    <el-tooltip effect="dark" :content="fullscreen ? `取消全屏` : `全屏`" placement="bottom">
                         <i class="el-icon-rank"></i>
                     </el-tooltip>
                 </div>
@@ -18,7 +18,7 @@
                 <div class="btn-bell">
                     <el-tooltip
                         effect="dark"
-                        :content="message?`有${message}条未读消息`:`消息中心`"
+                        :content="message ? `有${message}条未读消息` : `消息中心`"
                         placement="bottom"
                     >
                         <router-link to="/tabs">
@@ -29,12 +29,12 @@
                 </div>
                 <!-- 用户头像 -->
                 <div class="user-avator">
-                    <img src="@/assets/img/img.jpg" />
+                    <img :src="username.head_url" />
                 </div>
                 <!-- 用户名下拉菜单 -->
                 <el-dropdown class="user-name" trigger="click" @command="handleCommand">
                     <span class="el-dropdown-link">
-                        {{username}}
+                        {{ username.nickname ? username.nickname : "" }}
                         <i class="el-icon-caret-bottom"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
@@ -51,20 +51,28 @@
 </template>
 <script>
 import bus from "@/utils/bus";
+import { get } from "@/utils/storage.js";
 export default {
     data() {
         return {
             collapse: false,
             fullscreen: false,
-            name: "linxin",
-            message: 2
+
+            message: 2,
         };
     },
     computed: {
         username() {
-            let username = localStorage.getItem("ms_username");
-            return username ? username : this.name;
-        }
+            let username = get("userInfo");
+            if (username) {
+                return username;
+            } else {
+                return {
+                    head_url: require("@/assets/img/img.jpg"),
+                    nickname: "",
+                };
+            }
+        },
     },
     methods: {
         // 用户名下拉菜单选择事件
@@ -105,13 +113,13 @@ export default {
                 }
             }
             this.fullscreen = !this.fullscreen;
-        }
+        },
     },
     mounted() {
         if (document.body.clientWidth < 1500) {
             this.collapseChage();
         }
-    }
+    },
 };
 </script>
 <style scoped>

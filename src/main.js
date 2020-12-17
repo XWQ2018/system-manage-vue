@@ -14,10 +14,6 @@ import './utils/directives';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI, { size: 'small', zIndex: 2000 });
 
-// import { Button, Row } from 'element-ui';
-// Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 };
-// Vue.use(Button).use(Row)
-
 
 Vue.use(VueI18n);
 const i18n = new VueI18n({
@@ -30,15 +26,11 @@ Vue.config.productionTip = false;
 
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
-    document.title = `${to.meta.title} | 后台管理系统`;
-    const token = get('token');
+    document.title = '后台管理系统';
+    const token = get('userInfo') ? get('userInfo').token : '';
     if (!token && to.path !== '/login') {
         next('/login');
     }
-    // else if (to.meta.permission) {
-    //     // 如果是管理员权限则可进入，这里只是简单的模拟管理员权限而已
-    //     role === 'admin' ? next() : next('/403');
-    // } 
     else {
         // 简单的判断IE10及以下不进入富文本编辑器，该组件不兼容
         if (navigator.userAgent.indexOf('MSIE') > -1 && to.path === '/editor') {

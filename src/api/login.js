@@ -1,6 +1,6 @@
 import request from '@/utils/request';
 export default {
-    //login
+    //登陆
     guestLogin(params) {
         return request.post('/JnsXh/Guest/login', params);
     },

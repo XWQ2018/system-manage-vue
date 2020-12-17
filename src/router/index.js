@@ -10,7 +10,6 @@ export default new VueRouter({
         {
             path: '/',
             component: () => import(/* webpackChunkName: "home" */ '../components/Home.vue'),
-            meta: { title: '自述文件' },
             children: [
                 {
                     path: '/dashboard',
