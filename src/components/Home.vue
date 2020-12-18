@@ -36,6 +36,12 @@ export default {
                     icon: "el-icon-lx-presentfill",
                     index: "table",
                     title: "基础表格",
+                    subs: [
+                        {
+                            index: "form",
+                            title: "测试二级",
+                        },
+                    ],
                 },
                 {
                     icon: "el-icon-lx-copy",

@@ -2,9 +2,7 @@
     <div class>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item>
-                    <i class="el-icon-lx-copy"></i> tab选项卡
-                </el-breadcrumb-item>
+                <el-breadcrumb-item> <i class="el-icon-lx-copy"></i> 系统消息 </el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
@@ -13,7 +11,7 @@
                     <el-table :data="unread" :show-header="false" style="width: 100%">
                         <el-table-column>
                             <template slot-scope="scope">
-                                <span class="message-title">{{scope.row.title}}</span>
+                                <span class="message-title">{{ scope.row.title }}</span>
                             </template>
                         </el-table-column>
                         <el-table-column prop="date" width="180"></el-table-column>
@@ -32,7 +30,7 @@
                         <el-table :data="read" :show-header="false" style="width: 100%">
                             <el-table-column>
                                 <template slot-scope="scope">
-                                    <span class="message-title">{{scope.row.title}}</span>
+                                    <span class="message-title">{{ scope.row.title }}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="date" width="150"></el-table-column>
@@ -52,7 +50,7 @@
                         <el-table :data="recycle" :show-header="false" style="width: 100%">
                             <el-table-column>
                                 <template slot-scope="scope">
-                                    <span class="message-title">{{scope.row.title}}</span>
+                                    <span class="message-title">{{ scope.row.title }}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="date" width="150"></el-table-column>
@@ -82,25 +80,25 @@ export default {
             unread: [
                 {
                     date: "2018-04-19 20:00:00",
-                    title: "【系统通知】该系统将于今晚凌晨2点到5点进行升级维护"
+                    title: "【系统通知】该系统将于今晚凌晨2点到5点进行升级维护",
                 },
                 {
                     date: "2018-04-19 21:00:00",
-                    title: "今晚12点整发大红包，先到先得"
-                }
+                    title: "今晚12点整发大红包，先到先得",
+                },
             ],
             read: [
                 {
                     date: "2018-04-19 20:00:00",
-                    title: "【系统通知】该系统将于今晚凌晨2点到5点进行升级维护"
-                }
+                    title: "【系统通知】该系统将于今晚凌晨2点到5点进行升级维护",
+                },
             ],
             recycle: [
                 {
                     date: "2018-04-19 20:00:00",
-                    title: "【系统通知】该系统将于今晚凌晨2点到5点进行升级维护"
-                }
-            ]
+                    title: "【系统通知】该系统将于今晚凌晨2点到5点进行升级维护",
+                },
+            ],
         };
     },
     methods: {
@@ -116,13 +114,13 @@ export default {
         handleRestore(index) {
             const item = this.recycle.splice(index, 1);
             this.read = item.concat(this.read);
-        }
+        },
     },
     computed: {
         unreadNum() {
             return this.unread.length;
-        }
-    }
+        },
+    },
 };
 </script>
 
@@ -134,4 +132,3 @@ export default {
     margin-top: 30px;
 }
 </style>
-
